@@ -1,3 +1,4 @@
+import ImageTabs from "@/components/ui/image-tabs";
 import { ArrowRight, Briefcase, CheckCircle2, TrendingUp } from "lucide-react";
 
 import Link from "next/link";
@@ -57,11 +58,10 @@ export default function HomePage() {
           </div>
         </section>
 
-         {/* Hero images Section with Tabs */}
+        {/* Hero images Section with Tabs */}
+        <ImageTabs />
 
-         <section>
-          
-         </section>
+        <section></section>
 
         {/* features section */}
         <section

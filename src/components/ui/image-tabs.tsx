@@ -1,26 +1,51 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
 export default function ImageTabs() {
-  const [activeTab, setActiveTab] = useState();
-  return;
-  <section className="border-t bg-white py-16">
-    <div className="container mx-auto px-4">
+  const [activeTab, setActiveTab] = useState("organize");
+  return (
+    <section className="border-t bg-white py-16">
+      <div className="container mx-auto px-4">
         <div className="mx-auto max-w-6xl">
-            <div className="mb-8 flex justify-center gap-2">
-               
+          <div className="mb-8 flex justify-center gap-2">
+            <Button
+              className={`cursor-pointer rounded-lg px-6 py-3 text-sm font-medium transition-colors ${
+                activeTab === "organize"
+                  ? "bg-primary text-white"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+              onClick={() => setActiveTab("organize")}
+            >
+              Organize Applications
+            </Button>
 
-                
-            </div>
+            <Button
+              className={`cursor-pointer rounded-lg px-6 py-3 text-sm font-medium transition-colors ${
+                activeTab === "hired"
+                  ? "bg-primary text-white"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+              onClick={() => setActiveTab("hired")}
+            >
+              Get Hired
+            </Button>
+            <Button
+              className={`cursor-pointer rounded-lg px-6 py-3 text-sm font-medium transition-colors ${
+                activeTab === "boards"
+                  ? "bg-primary text-white"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+              onClick={() => setActiveTab("boards")}
+            >
+              Manage Boards
+            </Button>
+          </div>
 
-
-
-
-            <div  className="relative mx-auto max-w-5xl overflow-hidden rounded-lg border border-gray-200 shadow-xl"></div>
-
+          <div className="relative mx-auto max-w-5xl overflow-hidden rounded-lg border border-gray-200 shadow-xl"></div>
         </div>
-
-    </div>
-  </section>;
+      </div>
+    </section>
+  );
 }
