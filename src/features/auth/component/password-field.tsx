@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { type } from "os";
 
 type PasswordFieldProps = {
   id: string;
@@ -44,11 +43,11 @@ export function PasswordField({
           autoComplete={autoComplete}
         />
         <button
-          onClick={() => setShowPassword(!showPassword)}
+          onClick={() => setIsVisible(!isVisible)}
           className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 cursor-pointer"
           type="button"
         >
-          {showPassword ? (
+          {isVisible ? (
             <Eye className=" w-5 h-5 " />
           ) : (
             <EyeOff className=" w-5 h-5 " />
