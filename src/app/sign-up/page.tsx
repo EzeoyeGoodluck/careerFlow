@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Eye, EyeOff } from "lucide-react";
+import { PasswordField } from "@/features/auth/component/password-field";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -19,9 +19,6 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   return (
     <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-white p-4">
@@ -63,68 +60,20 @@ export default function SignUp() {
                 required
               />
             </div>
-
-            <div className="space-y-2">
-              <label htmlFor="password" className="text-gray-700">
-                Password
-              </label>
-              <div className="relative">
-                <Input
-                  id="password"
-                  type={showPassword ? "text" : "password"}
-                  placeholder="********"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  className="pr-10"
-                  autoComplete="new-password"
-                />
-                <button
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 cursor-pointer"
-                  type="button"
-                >
-                  {showPassword ? (
-                    <Eye className=" w-5 h-5 " />
-                  ) : (
-                    <EyeOff className=" w-5 h-5 " />
-                  )}
-                </button>
-              </div>
-            </div>
-            <div className="space-y-2">
-              <label htmlFor="confirm-password" className="text-gray-700">
-                Confirm Password
-              </label>
-              <div className="relative">
-                <Input
-                  autoComplete="new-password"
-                  id="confirm-password"
-                  type={confirmPassword ? "text" : "password"}
-                  placeholder="********"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  required
-                  className="pr-10"
-                />
-                <button
-                  aria-label={
-                    showConfirmPassword
-                      ? "Hide confirm password"
-                      : "Show confirm password"
-                  }
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 cursor-pointer"
-                  type="button"
-                >
-                  {showConfirmPassword ? (
-                    <Eye className=" w-5 h-5 " />
-                  ) : (
-                    <EyeOff className=" w-5 h-5 " />
-                  )}
-                </button>
-              </div>
-            </div>
+            <PasswordField
+              id="password"
+              value={password}
+              onChange={setPassword}
+              autoComplete="new-password"
+              label="Password"
+            />
+            <PasswordField
+              id="confirm-password"
+              value={confirmPassword}
+              onChange={setConfirmPassword}
+              autoComplete="new-password"
+              label="Confirm Password"
+            />
           </CardContent>
           <CardFooter className="flex flex-col space-y-4 ">
             <Button
