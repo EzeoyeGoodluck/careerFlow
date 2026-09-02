@@ -10,14 +10,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Eye, EyeOff } from "lucide-react";
+import { PasswordField } from "@/features/auth/component/password-field";
 import Link from "next/link";
 import { useState } from "react";
 
 export default function SignUp() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-white p-4">
       <Card className="w-full max-w-md border-gray-200 shadow-lg">
@@ -45,33 +44,13 @@ export default function SignUp() {
               />
             </div>
 
-            <div className="space-y-2">
-              <label htmlFor="password" className="text-gray-700">
-                Password
-              </label>
-              <div className="relative">
-                <Input
-                  id="password"
-                  type={showPassword ? "text" : "password"}
-                  placeholder="********"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  className="pr-10"
-                />
-                <button
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 cursor-pointer"
-                  type="button"
-                >
-                  {showPassword ? (
-                    <Eye className=" w-5 h-5 " />
-                  ) : (
-                    <EyeOff className=" w-5 h-5 " />
-                  )}
-                </button>
-              </div>
-            </div>
+            <PasswordField
+              id="password"
+              value={password}
+              onChange={setPassword}
+              autoComplete="new-password"
+              label="Password"
+            />
           </CardContent>
           <CardFooter className="flex flex-col space-y-4 ">
             <Button
