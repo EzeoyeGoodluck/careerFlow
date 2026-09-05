@@ -10,7 +10,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { PasswordField } from "@/features/auth/component/password-field";
+import { Label } from "@/components/ui/label";
+import { PasswordField } from "@/features/auth/components/password-field";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -19,6 +20,15 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      // TODO: surface a real error state once you have one
+      return;
+    }
+    // TODO: wire to better-auth sign-up once auth.ts exists
+  };
 
   return (
     <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-white p-4">
@@ -31,12 +41,10 @@ export default function SignUp() {
             Create your account to get started with CareerFlow.
           </CardDescription>
         </CardHeader>
-        <form className="text-gray-600">
+        <form onSubmit={handleSubmit} className="text-gray-600">
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <label htmlFor="name" className="text-gray-700">
-                Full Name
-              </label>
+              <Label htmlFor="name">Full Name</Label>
               <Input
                 id="name"
                 type="text"
@@ -44,13 +52,12 @@ export default function SignUp() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
+                autoComplete="name"
               />
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="email" className="text-gray-700">
-                Email
-              </label>
+              <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
                 type="email"
@@ -58,8 +65,10 @@ export default function SignUp() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                autoComplete="email"
               />
             </div>
+
             <PasswordField
               id="password"
               value={password}
@@ -75,16 +84,18 @@ export default function SignUp() {
               label="Confirm Password"
             />
           </CardContent>
-          <CardFooter className="flex flex-col space-y-4 ">
+          <CardFooter className="flex flex-col space-y-4">
             <Button
               className="cursor-pointer w-full bg-primary hover:bg-primary/90"
               type="submit"
             >
               Sign Up
             </Button>
-            <p className="text-center text-sm text-gray-600 cursor-pointer">
-              {" "}
-              {"Already have an account"} <Link href="/sign-in"> Sign-In </Link>
+            <p className="text-center text-sm text-gray-600">
+              {"Already have an account? "}
+              <Link href="/sign-in" className="underline">
+                Sign in
+              </Link>
             </p>
           </CardFooter>
         </form>
