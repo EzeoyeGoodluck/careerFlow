@@ -1,9 +1,14 @@
 import ImageTabs from "@/components/image-tabs";
 import { ArrowRight, Briefcase, CheckCircle2, TrendingUp } from "lucide-react";
+import connectDB from "@/lib/db/connect"; // adjust to your act
 
 import Link from "next/link";
 
 export default function HomePage() {
+  connectDB()
+    .then(() => console.log("✅ Mongo connected"))
+    .catch((err) => console.error("❌ Mongo connection failed:", err));
+
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-950">
       <a
